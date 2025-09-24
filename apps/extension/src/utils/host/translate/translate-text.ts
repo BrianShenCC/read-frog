@@ -11,6 +11,7 @@ import { getConfigFromStorage } from '../../config/config'
 import { Sha256Hex } from '../../hash'
 import { sendMessage } from '../../message'
 import { aiTranslate } from './api/ai'
+import { chromeTranslatorTranslate, isChromeTranslatorAvailable } from './api/chrome'
 import { deeplxTranslate } from './api/deeplx'
 import { googleTranslate } from './api/google'
 import { microsoftTranslate } from './api/microsoft'
@@ -64,6 +65,9 @@ export async function executeTranslate(text: string, langConfig: Config['languag
     else if (provider === 'microsoft') {
       translatedText = await microsoftTranslate(text, sourceLang, targetLang)
     }
+    else if (provider === 'chrome') {
+      translatedText = await chromeTranslatorTranslate(text, sourceLang, targetLang)
+    }
   }
   else if (isPureAPIProvider(provider)) {
     const sourceLang = langConfig.sourceCode === 'auto' ? 'auto' : (ISO6393_TO_6391[langConfig.sourceCode] ?? 'auto')
@@ -108,6 +112,12 @@ export function validateTranslationConfig(config: Pick<Config, 'providersConfig'
   if (isAPIProviderConfig(providerConfig) && providerConfig.apiKey === undefined && providerConfig.provider !== 'deeplx') {
     toast.error(i18n.t('noAPIKeyConfig.warning'))
     logger.info('validateTranslationConfig: returning false (no API key)')
+    return false
+  }
+
+  if (providerConfig.provider === 'chrome' && !isChromeTranslatorAvailable()) {
+    toast.error(i18n.t('translation.chromeUnavailable'))
+    logger.info('validateTranslationConfig: returning false (chrome translator unavailable)')
     return false
   }
 

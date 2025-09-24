@@ -1,6 +1,7 @@
 import type { Config } from '@/types/config/config'
 import type { APIProviderConfig, LLMTranslateProviderConfig, NonAPIProviderConfig, ProviderConfig, ProvidersConfig, PureAPIProviderConfig, ReadProviderConfig, TranslateProviderConfig } from '@/types/config/provider'
 import { isAPIProviderConfig, isLLMTranslateProviderConfig, isNonAPIProviderConfig, isPureAPIProviderConfig, isReadProviderConfig, isTranslateProviderConfig } from '@/types/config/provider'
+import { isChromeTranslatorAvailable } from '@/utils/host/translate/api/chrome'
 
 export function getProviderConfigById<T extends ProviderConfig>(providersConfig: T[], providerId: string): T | undefined {
   return providersConfig.find(p => p.id === providerId)
@@ -19,7 +20,9 @@ export function getPureAPIProvidersConfig(providersConfig: ProvidersConfig): Pur
 }
 
 export function getNonAPIProvidersConfig(providersConfig: ProvidersConfig): NonAPIProviderConfig[] {
-  return providersConfig.filter(isNonAPIProviderConfig)
+  return providersConfig
+    .filter(isNonAPIProviderConfig)
+    .filter(provider => provider.provider !== 'chrome' || isChromeTranslatorAvailable())
 }
 
 export function getReadProvidersConfig(providersConfig: ProvidersConfig): ReadProviderConfig[] {

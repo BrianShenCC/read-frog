@@ -248,6 +248,7 @@ translateService:
   title: 翻譯服務
   description: 僅用於翻譯網頁內容
   normalTranslator: 普通翻譯
+  browserTranslator: 瀏覽器內建翻譯
   aiTranslator: AI 翻譯
 translatePrompt:
   title: AI 翻譯風格
@@ -268,5 +269,6 @@ noAPIKeyConfig:
 translation:
   sameLanguage: 源語言和目標語言必須不同
   autoModeSameLanguage: 檢測到的語言 '$1' 與目標語言相同
+  chromeUnavailable: 目前瀏覽器不支援 Chrome 內建翻譯服務
 shortcutKeySelector:
   placeholder: 請輸入快捷鍵

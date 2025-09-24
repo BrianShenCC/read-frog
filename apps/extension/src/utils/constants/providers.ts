@@ -2,6 +2,7 @@ import type { AllProviderNames, ProviderConfig, ProvidersConfig, ReadModels, Tra
 import { i18n } from '#i18n'
 import deeplxLogoDark from '@/assets/providers/deeplx-dark.svg'
 import deeplxLogoLight from '@/assets/providers/deeplx-light.svg'
+import chromeTranslatorLogo from '@/assets/providers/google_Chrome_icon.png'
 import openaiCompatibleLogoDark from '@/assets/providers/openai-compatible-dark.svg'
 import openaiCompatibleLogoLight from '@/assets/providers/openai-compatible-light.svg'
 import tensdaqLogoColor from '@/assets/providers/tensdaq-color.svg'
@@ -237,6 +238,12 @@ export const DEFAULT_PROVIDER_CONFIG = {
     name: 'Microsoft Translator',
     enabled: true,
     provider: 'microsoft',
+  },
+  chrome: {
+    id: 'chrome-default',
+    name: 'Chrome Translator',
+    enabled: true,
+    provider: 'chrome',
   },
   siliconflow: {
     id: 'siliconflow-default',
@@ -486,6 +493,7 @@ export const DEFAULT_PROVIDER_CONFIG = {
 export const DEFAULT_PROVIDER_CONFIG_LIST: ProvidersConfig = [
   DEFAULT_PROVIDER_CONFIG.google,
   DEFAULT_PROVIDER_CONFIG.microsoft,
+  DEFAULT_PROVIDER_CONFIG.chrome,
   DEFAULT_PROVIDER_CONFIG.openai,
   DEFAULT_PROVIDER_CONFIG.ai302,
   DEFAULT_PROVIDER_CONFIG.deepseek,
@@ -516,6 +524,10 @@ export const PROVIDER_ITEMS: Record<AllProviderNames, { logo: (isDark: boolean) 
     google: {
       logo: getLobeIconsCDNUrlFn('google-color'),
       name: NON_API_TRANSLATE_PROVIDERS_MAP.google,
+    },
+    chrome: {
+      logo: () => chromeTranslatorLogo,
+      name: NON_API_TRANSLATE_PROVIDERS_MAP.chrome,
     },
     deeplx: {
       logo: (isDark: boolean) => isDark ? deeplxLogoDark : deeplxLogoLight,

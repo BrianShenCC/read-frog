@@ -48,12 +48,13 @@ export const TRANSLATE_PROVIDER_MODELS = {
   vercel: ['v0-1.5-md', 'v0-1.0-md'],
   openrouter: ['x-ai/grok-4-fast:free', 'openai/gpt-4.1-mini'],
 } as const
-export const NON_API_TRANSLATE_PROVIDERS = ['google', 'microsoft'] as const
+export const NON_API_TRANSLATE_PROVIDERS = ['google', 'microsoft', 'chrome'] as const
 export const NON_API_TRANSLATE_PROVIDERS_MAP: Record<typeof NON_API_TRANSLATE_PROVIDERS[number], string> = {
   google: 'Google Translate',
   microsoft: 'Microsoft Translator',
+  chrome: 'Chrome Translator',
 }
-export const PURE_TRANSLATE_PROVIDERS = ['google', 'microsoft', 'deeplx'] as const
+export const PURE_TRANSLATE_PROVIDERS = ['google', 'microsoft', 'chrome', 'deeplx'] as const
 
 export const THINKING_MODELS = ['gemini-2.5-pro', 'gemini-1.5-pro'] as const
 
@@ -74,7 +75,7 @@ export function isReadProviderConfig(config: ProviderConfig): config is ReadProv
 }
 
 // translate provider names
-export const TRANSLATE_PROVIDER_NAMES = ['google', 'microsoft', 'deeplx', 'openai', 'deepseek', 'gemini', 'anthropic', 'grok', 'openaiCompatible', 'siliconflow', 'tensdaq', 'ai302', 'amazonBedrock', 'groq', 'deepinfra', 'mistral', 'togetherai', 'cohere', 'fireworks', 'cerebras', 'replicate', 'perplexity', 'vercel', 'openrouter'] as const satisfies Readonly<
+export const TRANSLATE_PROVIDER_NAMES = ['google', 'microsoft', 'chrome', 'deeplx', 'openai', 'deepseek', 'gemini', 'anthropic', 'grok', 'openaiCompatible', 'siliconflow', 'tensdaq', 'ai302', 'amazonBedrock', 'groq', 'deepinfra', 'mistral', 'togetherai', 'cohere', 'fireworks', 'cerebras', 'replicate', 'perplexity', 'vercel', 'openrouter'] as const satisfies Readonly<
   (keyof typeof TRANSLATE_PROVIDER_MODELS | typeof PURE_TRANSLATE_PROVIDERS[number])[]
 >
 export type TranslateProviderNames = typeof TRANSLATE_PROVIDER_NAMES[number]
@@ -161,7 +162,7 @@ export function isNonAPIProviderConfig(config: ProviderConfig): config is NonAPI
 }
 
 // all provider names
-export const ALL_PROVIDER_NAMES = ['google', 'microsoft', 'deeplx', 'siliconflow', 'tensdaq', 'ai302', 'openaiCompatible', 'openai', 'deepseek', 'gemini', 'anthropic', 'grok', 'amazonBedrock', 'groq', 'deepinfra', 'mistral', 'togetherai', 'cohere', 'fireworks', 'cerebras', 'replicate', 'perplexity', 'vercel', 'openrouter'] as const satisfies Readonly<
+export const ALL_PROVIDER_NAMES = ['google', 'microsoft', 'chrome', 'deeplx', 'siliconflow', 'tensdaq', 'ai302', 'openaiCompatible', 'openai', 'deepseek', 'gemini', 'anthropic', 'grok', 'amazonBedrock', 'groq', 'deepinfra', 'mistral', 'togetherai', 'cohere', 'fireworks', 'cerebras', 'replicate', 'perplexity', 'vercel', 'openrouter'] as const satisfies Readonly<
   (typeof READ_PROVIDER_NAMES[number] | typeof TRANSLATE_PROVIDER_NAMES[number])[]
 >
 export type AllProviderNames = typeof ALL_PROVIDER_NAMES[number]
@@ -322,6 +323,9 @@ export const providerConfigSchemaList = [
   }),
   baseProviderConfigSchema.extend({
     provider: z.literal('microsoft'),
+  }),
+  baseProviderConfigSchema.extend({
+    provider: z.literal('chrome'),
   }),
 ] as const
 
