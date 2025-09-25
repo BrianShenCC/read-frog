@@ -239,11 +239,11 @@ export const DEFAULT_PROVIDER_CONFIG = {
     enabled: true,
     provider: 'microsoft',
   },
-  chrome: {
-    id: 'chrome-default',
-    name: 'Chrome Translator',
+  builtIn: {
+    id: 'built-in-default',
+    name: 'Built-in Translator',
     enabled: true,
-    provider: 'chrome',
+    provider: 'builtIn',
   },
   siliconflow: {
     id: 'siliconflow-default',
@@ -493,7 +493,7 @@ export const DEFAULT_PROVIDER_CONFIG = {
 export const DEFAULT_PROVIDER_CONFIG_LIST: ProvidersConfig = [
   DEFAULT_PROVIDER_CONFIG.google,
   DEFAULT_PROVIDER_CONFIG.microsoft,
-  DEFAULT_PROVIDER_CONFIG.chrome,
+  DEFAULT_PROVIDER_CONFIG.builtIn,
   DEFAULT_PROVIDER_CONFIG.openai,
   DEFAULT_PROVIDER_CONFIG.ai302,
   DEFAULT_PROVIDER_CONFIG.deepseek,
@@ -525,9 +525,9 @@ export const PROVIDER_ITEMS: Record<AllProviderNames, { logo: (isDark: boolean) 
       logo: getLobeIconsCDNUrlFn('google-color'),
       name: NON_API_TRANSLATE_PROVIDERS_MAP.google,
     },
-    chrome: {
+    builtIn: {
       logo: () => chromeTranslatorLogo,
-      name: NON_API_TRANSLATE_PROVIDERS_MAP.chrome,
+      name: NON_API_TRANSLATE_PROVIDERS_MAP.builtIn,
     },
     deeplx: {
       logo: (isDark: boolean) => isDark ? deeplxLogoDark : deeplxLogoLight,

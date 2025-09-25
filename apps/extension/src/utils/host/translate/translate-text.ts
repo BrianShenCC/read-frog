@@ -11,7 +11,7 @@ import { getConfigFromStorage } from '../../config/config'
 import { Sha256Hex } from '../../hash'
 import { sendMessage } from '../../message'
 import { aiTranslate } from './api/ai'
-import { chromeTranslatorTranslate, isChromeTranslatorAvailable } from './api/chrome'
+import { chromeTranslatorTranslate, isChromeTranslatorAvailable } from './api/built-in'
 import { deeplxTranslate } from './api/deeplx'
 import { googleTranslate } from './api/google'
 import { microsoftTranslate } from './api/microsoft'
@@ -65,7 +65,7 @@ export async function executeTranslate(text: string, langConfig: Config['languag
     else if (provider === 'microsoft') {
       translatedText = await microsoftTranslate(text, sourceLang, targetLang)
     }
-    else if (provider === 'chrome') {
+    else if (provider === 'builtIn') {
       translatedText = await chromeTranslatorTranslate(text, sourceLang, targetLang)
     }
   }
@@ -115,8 +115,8 @@ export function validateTranslationConfig(config: Pick<Config, 'providersConfig'
     return false
   }
 
-  if (providerConfig.provider === 'chrome' && !isChromeTranslatorAvailable()) {
-    toast.error(i18n.t('translation.chromeUnavailable'))
+  if (providerConfig.provider === 'builtIn' && !isChromeTranslatorAvailable()) {
+    toast.error(i18n.t('translation.builtInUnavailable'))
     logger.info('validateTranslationConfig: returning false (chrome translator unavailable)')
     return false
   }

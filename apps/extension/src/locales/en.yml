@@ -248,7 +248,6 @@ translateService:
   title: Translation Service
   description: For translate the webpage only
   normalTranslator: Normal Translator
-  browserTranslator: Browser Translator
   aiTranslator: AI Translator
 translatePrompt:
   title: AI Translation Style
@@ -269,6 +268,6 @@ noAPIKeyConfig:
 translation:
   sameLanguage: Source and target languages must be different
   autoModeSameLanguage: Detected language '$1' is the same as target language
-  chromeUnavailable: Chrome Translator is unavailable in this browser
+  builtInUnavailable: Built-in Translator is unavailable in this browser
 shortcutKeySelector:
   placeholder: Please enter the shortcut

@@ -246,7 +246,6 @@ translateService:
   title: 翻訳サービス
   description: ウェブページの翻訳にのみ使用
   normalTranslator: 通常翻訳
-  browserTranslator: ブラウザ翻訳
   aiTranslator: AI翻訳
 translatePrompt:
   title: AI翻訳スタイル
@@ -267,6 +266,6 @@ noAPIKeyConfig:
 translation:
   sameLanguage: ソース言語とターゲット言語は異なる必要があります
   autoModeSameLanguage: 検出された言語 '$1' はターゲット言語と同じです
-  chromeUnavailable: このブラウザでは Chrome の内蔵翻訳が利用できません
+  builtInUnavailable: このブラウザでは内蔵翻訳サービスをサポートしていません
 shortcutKeySelector:
   placeholder: ショートカットを入力してください

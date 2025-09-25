@@ -247,7 +247,6 @@ translateService:
   title: 번역 서비스
   description: 웹페이지 번역 전용
   normalTranslator: 일반 번역기
-  browserTranslator: 브라우저 번역기
   aiTranslator: AI 번역기
 translatePrompt:
   title: AI 번역 스타일
@@ -268,6 +267,6 @@ noAPIKeyConfig:
 translation:
   sameLanguage: 원본 언어와 대상 언어는 달라야 합니다
   autoModeSameLanguage: 감지된 언어 '$1'은(는) 대상 언어와 같습니다
-  chromeUnavailable: 이 브라우저에서는 Chrome 내장 번역을 사용할 수 없습니다
+  builtInUnavailable: 현재 브라우저는 내장 번역 서비스를 지원하지 않습니다
 shortcutKeySelector:
   placeholder: 단축키를 입력해 주세요
