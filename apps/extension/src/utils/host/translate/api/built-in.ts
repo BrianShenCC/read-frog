@@ -29,7 +29,7 @@ interface ChromeAI {
 }
 
 export async function checkChromeModelAvailability(): Promise<'unavailable' | 'available' | 'downloadable' | 'downloading'> {
-  return (globalThis as unknown as ChromeAI).LanguageModel.availability()
+  return (globalThis as unknown as ChromeAI).LanguageModel?.availability() || 'unavailable'
 }
 
 export function isChromeTranslatorAvailable(): boolean {
@@ -43,6 +43,10 @@ export async function chromeTranslatorTranslate(
 ): Promise<string> {
   if (!isChromeTranslatorAvailable()) {
     throw new Error('Built-in Translator API is not available in this environment')
+  }
+  const modelAvailability = await checkChromeModelAvailability()
+  if (modelAvailability !== 'available') {
+    throw new Error(`Built-in LLM is not available in this environment, current status: ${modelAvailability}`)
   }
 
   let translator: ChromeTranslator | undefined
